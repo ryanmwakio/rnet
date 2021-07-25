@@ -78,7 +78,7 @@
   }
   
   .text-primary {
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
   }
   
   .text-dark {
@@ -196,7 +196,7 @@
   .bg-dark,
   .badge-dark,
   .alert-dark {
-    background: var(--dark-color);
+    background: var(--dark-color) !important;
     color: #fff;
   }
   
@@ -517,7 +517,7 @@
   /* Mobile Styles */
   @media (max-width: 700px) {
     .container {
-      margin-top: 8rem;
+      margin-top: 10rem;
     }
   
     .hide-sm {
@@ -542,6 +542,14 @@
       display: block;
       text-align: center;
     }
+
+   .nav-link {
+     text-decoration: none;
+   }
+
+   .active {
+     color: var(--primary-color);
+   }
   
     .navbar ul {
       text-align: center;
