@@ -21,7 +21,7 @@ app.use('/api/posts',require('./routes/api/posts'));
 const PORT=process.env.PORT || 5000;
 
 app.get('/' , (req , res)=>{
-   res.send('hello from social network app API :)');
+   res.send('hello from RNET API :)');
 })
 
-app.listen(PORT,()=>{console.log(`server running on http://localhost:${PORT}`)})
+app.listen(PORT,()=>{console.log(`RNET server running on http://localhost:${PORT}`)})
