@@ -1,15 +1,19 @@
 import React,{Fragment, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+
 import { getCurrentProfile } from '../../actions/profile'
 import Spinner from '../layout/Spinner'
-import {Link} from 'react-router-dom'
+import {DashboardActions} from './DashboardActions'
+
 
 const Dashboard = ({getCurrentProfile,auth: {user},profile: {profile,loading}}) => {
     
-    // eslint-disable-next-line
+ 
     useEffect(()=>{
         getCurrentProfile();
+    // eslint-disable-next-line
     },[]);
 
     return loading && profile===null ? <Spinner/> : <Fragment>
@@ -17,6 +21,7 @@ const Dashboard = ({getCurrentProfile,auth: {user},profile: {profile,loading}}) 
         <p><i className="fas fa-user"></i> welcome {user && user.name}</p>
         {profile !== null ? 
         <Fragment>
+            <DashboardActions></DashboardActions>
             has
         </Fragment> : 
         <Fragment>
