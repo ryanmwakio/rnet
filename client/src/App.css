@@ -610,3 +610,12 @@
     }
   }
   
+  .mb-none {
+    margin-bottom: -10rem !important;
+  }
+
+  @media (max-width: 700px) {
+    .mb-none {
+      margin-bottom: -20rem !important;
+    }
+  }
