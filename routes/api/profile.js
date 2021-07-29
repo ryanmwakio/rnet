@@ -7,6 +7,7 @@ const {check,validationResult}=require('express-validator');
 const auth=require('../../middleware/auth');
 const Profile=require('../../models/Profile');
 const User=require('../../models/User');
+const Post=require('../../models/Post');
 
 //@route GET    api/profile/me
 //@description  Get one profile/ based on token
@@ -138,6 +139,7 @@ router.delete('/',auth,async (req,res)=>{
     try{
 
         //Remove user's posts
+        await Post.deleteMany({user: req.user.id});
 
         //Remove profile
         await Profile.findOneAndRemove({user: req.user.id});

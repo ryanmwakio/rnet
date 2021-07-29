@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import {setAlert} from './alert'
-import {GET_PROFILE,PROFILE_ERROR,UPDATE_PROFILE} from './types';
+import {GET_PROFILE,PROFILE_ERROR,UPDATE_PROFILE,CLEAR_PROFILE,ACCOUNT_DELETED} from './types';
 
 //Get the current user's profile
 export const getCurrentProfile=()=>async dispatch=>{
@@ -89,4 +89,53 @@ export const addEducation=(formData,history)=> async dispatch=>{
         }
         dispatch({type: PROFILE_ERROR,payload: {msg: err.response.statusText, status: err.response.status}});
     }
+}
+
+//Delete an experience
+export const deleteExperience=id=>async dispatch=>{
+    try {
+        const res=await axios.delete(`api/profile/experience/${id}`);
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        })
+        dispatch(setAlert('Experience removed successfully','success'));
+
+    } catch (err) {
+        dispatch({type: PROFILE_ERROR,payload: {msg: err.response.statusText, status: err.response.status}});
+    }
+}
+
+//Delete education
+export const deleteEducation=id=>async dispatch=>{
+    try {
+        const res=await axios.delete(`api/profile/education/${id}`);
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        })
+        dispatch(setAlert('Education removed successfully','success'));
+
+    } catch (err) {
+        dispatch({type: PROFILE_ERROR,payload: {msg: err.response.statusText, status: err.response.status}});
+    }
+}
+
+
+//Delete an account
+export const deleteAccount= () =>async dispatch=>{
+    if(window.confirm('Are you sure? this cannot be undone')){
+        try {
+            // eslint-disable-next-line
+            const res=await axios.delete(`api/profile`);
+            dispatch({type: CLEAR_PROFILE});
+            dispatch({type: ACCOUNT_DELETED});
+
+            dispatch(setAlert('Your account has been permanently deleted'));
+    
+        } catch (err) {
+            dispatch({type: PROFILE_ERROR,payload: {msg: err.response.statusText, status: err.response.status}});
+        }
+    }
+   
 }
