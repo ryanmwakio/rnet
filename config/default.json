@@ -1,6 +1,0 @@
-{
-    "mongoURL": "mongodb://localhost:27017/rnet254",
-    "jwtSecret": "mysecrettoken",
-    "githubClientId":"placeholder50004927272",
-    "githubSecret":"placeholdersecret846464634"
-}
